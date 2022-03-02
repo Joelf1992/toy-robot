@@ -4,7 +4,7 @@ import { Grid } from "./features/Grid";
 function App() {
   return (
     <div className="App">
-      <Grid></Grid>
+      <Grid />
     </div>
   );
 }
