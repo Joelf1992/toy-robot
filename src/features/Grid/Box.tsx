@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GridContext } from "./Grid";
+import { SiProbot } from "react-icons/si";
 
 export const Box = ({ x, y }: { x: number; y: number }) => {
   const value = useContext(GridContext);
@@ -8,10 +9,9 @@ export const Box = ({ x, y }: { x: number; y: number }) => {
   return (
     <div
       key={`${x}-${y}`}
-      className="border border-white w-28 h-28 text-sm flex flex-col space-y-3"
+      className="border border-white w-28 h-28 text-sm flex justify-center items-center"
     >
-      <div>x: {x}</div> <div>y: {y} </div>
-      {isCurrent && <div>current</div>}
+      {isCurrent && <SiProbot size={28} />}
     </div>
   );
 };
