@@ -22,8 +22,8 @@ const transitions: Record<Facing, { LEFT: Facing; RIGHT: Facing }> = {
     RIGHT: "SOUTH",
   },
   SOUTH: {
-    LEFT: "WEST",
-    RIGHT: "EAST",
+    LEFT: "EAST",
+    RIGHT: "WEST",
   },
   WEST: {
     LEFT: "SOUTH",
@@ -62,6 +62,9 @@ export const GridReducer = (state: State = defaultState, action: Action) => {
     }
     case "PLACE": {
       if (!validateCoords(action.payload.x, action.payload.y)) {
+        return state;
+      }
+      if (!Object.keys(transitions).includes(action.payload.facing)) {
         return state;
       }
       return {

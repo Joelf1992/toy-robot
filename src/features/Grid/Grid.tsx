@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { PrimaryButton } from "../../components/Button";
 import { ROWS } from "../../config/grid";
 import { Box } from "./Box";
 import { Placement } from "./Placement";
@@ -23,24 +24,19 @@ export const Grid = () => {
           onDone={(state) => dispatch({ type: "PLACE", payload: state })}
         />
         <div className="flex space-x-3">
-          <button
-            onClick={() => dispatch({ type: "MOVE" })}
-            className="bg-blue-400 rounded-lg px-4 py-2"
-          >
+          <PrimaryButton onClick={() => dispatch({ type: "MOVE" })}>
             Move
-          </button>
-          <button
+          </PrimaryButton>
+          <PrimaryButton
             onClick={() => dispatch({ type: "TURN", payload: "LEFT" })}
-            className="bg-blue-400 rounded-lg px-4 py-2"
           >
             Left
-          </button>
-          <button
+          </PrimaryButton>
+          <PrimaryButton
             onClick={() => dispatch({ type: "TURN", payload: "RIGHT" })}
-            className="bg-blue-400 rounded-lg px-4 py-2"
           >
             Right
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </GridContext.Provider>
