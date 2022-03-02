@@ -9,7 +9,7 @@ export const Box = ({ x, y }: { x: number; y: number }) => {
   return (
     <div
       key={`${x}-${y}`}
-      className="border border-white w-28 h-28 text-sm flex justify-center items-center"
+      className="border border-white w-20 h-20 text-sm flex justify-center items-center"
     >
       {isCurrent && <SiProbot size={28} />}
     </div>

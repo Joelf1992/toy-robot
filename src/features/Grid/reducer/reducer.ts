@@ -1,10 +1,15 @@
 import { Facing } from ".";
+import { GRID_SIZE } from "../../../config/grid";
 import { Action, State } from "./types";
 
 export const defaultState: State = {
   x: 0,
   y: 0,
   facing: "NORTH",
+};
+
+const validateCoords = (x: number, y: number) => {
+  return x < GRID_SIZE && x >= 0 && y < GRID_SIZE && y >= 0;
 };
 
 const transitions: Record<Facing, { LEFT: Facing; RIGHT: Facing }> = {
@@ -40,9 +45,7 @@ export const GridReducer = (state: State = defaultState, action: Action) => {
       } else {
         nextY = nextY - 1;
       }
-      if (nextX === -1 || nextX === 5) {
-        return state;
-      } else if (nextY === -1 || nextY === 5) {
+      if (!validateCoords(nextX, nextY)) {
         return state;
       }
       return {
@@ -55,6 +58,14 @@ export const GridReducer = (state: State = defaultState, action: Action) => {
       return {
         ...state,
         facing: transitions[state.facing][action.payload],
+      };
+    }
+    case "PLACE": {
+      if (!validateCoords(action.payload.x, action.payload.y)) {
+        return state;
+      }
+      return {
+        ...action.payload,
       };
     }
     default:

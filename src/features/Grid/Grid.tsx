@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 import { ROWS } from "../../config/grid";
 import { Box } from "./Box";
+import { Placement } from "./Placement";
 import { defaultState, GridReducer, State } from "./reducer";
 
 export const GridContext = createContext<State>(defaultState);
@@ -16,7 +17,11 @@ export const Grid = () => {
         )}
       </div>
       <div className="mt-3 flex flex-col space-y-4 ">
-        <div className="fle">FACING: {state.facing}</div>
+        <div>FACING: {state.facing}</div>
+
+        <Placement
+          onDone={(state) => dispatch({ type: "PLACE", payload: state })}
+        />
         <div className="flex space-x-3">
           <button
             onClick={() => dispatch({ type: "MOVE" })}

@@ -12,5 +12,9 @@ export type TurnAction = {
   type: "TURN";
   payload: "LEFT" | "RIGHT";
 };
+export type PlaceAction = {
+  type: "PLACE";
+  payload: State;
+};
 
-export type Action = MoveAction | TurnAction;
+export type Action = MoveAction | TurnAction | PlaceAction;
