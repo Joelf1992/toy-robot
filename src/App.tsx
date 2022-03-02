@@ -1,9 +1,10 @@
 import "./App.css";
+import { Grid } from "./features/Grid";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <Grid></Grid>
     </div>
   );
 }

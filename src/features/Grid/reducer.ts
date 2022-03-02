@@ -18,6 +18,9 @@ const GridReducer = <State>(state: State, action: MoveAction | TurnAction) => {
     case "MOVE": {
       return state;
     }
+    case "TURN": {
+      return state;
+    }
     default:
       return state;
   }
