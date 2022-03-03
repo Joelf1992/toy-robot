@@ -4,6 +4,7 @@ import { ROWS, Row } from "../../config/grid";
 import { Square } from "./Square";
 import { Placement } from "./Placement";
 import { defaultState, GridReducer, State } from "./reducer";
+import { validateCoords } from "../../utilities/validate-grid";
 
 export const GridContext = createContext<State>(defaultState);
 
@@ -11,7 +12,7 @@ const RowView = ({ row }: { row: Row }) => {
   return (
     <>
       {row.items.map((x) => (
-        <Square x={x} y={row.y} />
+        <Square key={`y-${row.y}-x-${x}`} x={x} y={row.y} />
       ))}
     </>
   );
@@ -19,6 +20,7 @@ const RowView = ({ row }: { row: Row }) => {
 
 export const Grid = () => {
   const [state, dispatch] = useReducer(GridReducer, defaultState);
+  const disabled = !validateCoords(state.x, state.y);
 
   return (
     <GridContext.Provider value={state}>
@@ -34,15 +36,20 @@ export const Grid = () => {
           onDone={(state) => dispatch({ type: "PLACE", payload: state })}
         />
         <div className="flex space-x-3">
-          <PrimaryButton onClick={() => dispatch({ type: "MOVE" })}>
+          <PrimaryButton
+            disabled={disabled}
+            onClick={() => dispatch({ type: "MOVE" })}
+          >
             Move
           </PrimaryButton>
           <PrimaryButton
+            disabled={disabled}
             onClick={() => dispatch({ type: "TURN", payload: "LEFT" })}
           >
             Left
           </PrimaryButton>
           <PrimaryButton
+            disabled={disabled}
             onClick={() => dispatch({ type: "TURN", payload: "RIGHT" })}
           >
             Right

@@ -1,15 +1,15 @@
 import { Facing } from ".";
 import { GRID_SIZE } from "../../../config/grid";
+import { validateCoords } from "../../../utilities/validate-grid";
 import { Action, State } from "./types";
 
+/*
+  Robot starts off the Grid
+*/
 export const defaultState: State = {
-  x: 0,
-  y: 0,
+  x: -1,
+  y: GRID_SIZE,
   facing: "NORTH",
-};
-
-const validateCoords = (x: number, y: number) => {
-  return x < GRID_SIZE && x >= 0 && y < GRID_SIZE && y >= 0;
 };
 
 const transitions: Record<Facing, { LEFT: Facing; RIGHT: Facing }> = {
