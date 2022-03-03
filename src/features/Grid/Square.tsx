@@ -9,7 +9,7 @@ export const Square = ({ x, y }: { x: number; y: number }) => {
   return (
     <div
       key={`${x}-${y}`}
-      className="border border-white w-16 h-16 text-sm flex justify-center items-center"
+      className="border bg-blue-500 border-white w-16 h-16 text-sm flex justify-center items-center"
     >
       {isRobotPosition && <SiProbot size={28} />}
     </div>

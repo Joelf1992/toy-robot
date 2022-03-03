@@ -23,7 +23,7 @@ export const Placement = ({ onDone }: { onDone: (state: State) => void }) => {
     <input
       onChange={(e) => setPlacement(e.target.value)}
       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      placeholder="Place X,Y,F"
+      placeholder="X,Y,F"
     />
   );
 };

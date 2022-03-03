@@ -32,7 +32,7 @@ export const Grid = () => {
   return (
     <GridContext.Provider value={state}>
       <div className="flex flex-col md:flex-row items-center space-x-8">
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-5 border border-white">
           {ROWS.map((row) => (
             <RowView key={row.y} row={row} />
           ))}
