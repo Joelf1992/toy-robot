@@ -30,8 +30,14 @@ export const Grid = () => {
             <RowView key={row.y} row={row} />
           ))}
         </div>
-        <div className="mt-3 flex flex-col space-y-4 ">
-          <div>FACING: {state.facing}</div>
+        <div className="mt-3 flex flex-col items-center space-y-3">
+          <div className="flex flex-col items-center">
+            <div>FACING: {state.facing}</div>
+            <div className="flex space-x-3">
+              <div>X: {state.x}</div>
+              <div>Y: {state.y}</div>
+            </div>
+          </div>
 
           <Placement
             onDone={(state) => dispatch({ type: "PLACE", payload: state })}
