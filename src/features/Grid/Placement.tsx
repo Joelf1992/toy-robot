@@ -1,33 +1,29 @@
-import { useCallback } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
 import { State } from "./reducer";
 
 export const Placement = ({ onDone }: { onDone: (state: State) => void }) => {
-  const methods = useForm<{ placement: string }>({
-    defaultValues: {
-      placement: "",
-    },
-  });
+  const [placement, setPlacement] = useState<string>("");
+  const debouncedPlacement = useDebounce<string>(placement, 500);
 
-  const { isValid } = methods.formState;
-  const handleSubmit = useCallback<SubmitHandler<{ placement: string }>>(
-    ({ placement }) => {
-      if (!isValid) {
-        return null;
+  useEffect(() => {
+    if (debouncedPlacement) {
+      const [x, y, facing] = debouncedPlacement.slice().split(",");
+      if (x && y && facing) {
+        onDone({
+          x: Number(x),
+          y: Number(y),
+          facing: facing.toUpperCase() as any,
+        });
       }
-      const [x, y, f] = placement.split(",");
-      onDone({ x: Number(x), y: Number(y), facing: f as any });
-    },
-    [isValid, onDone]
-  );
+    }
+  }, [debouncedPlacement, onDone]);
 
   return (
-    <form onSubmit={methods.handleSubmit(handleSubmit)}>
-      <input
-        {...methods.register("placement")}
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="Place X,Y,F"
-      />
-    </form>
+    <input
+      onChange={(e) => setPlacement(e.target.value)}
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      placeholder="Place X,Y,F"
+    />
   );
 };

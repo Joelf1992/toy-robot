@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useCallback, useReducer } from "react";
 import { PrimaryButton } from "../../components/Button";
 import { ROWS, Row } from "../../config/grid";
 import { Square } from "./Square";
@@ -22,6 +22,13 @@ export const Grid = () => {
   const [state, dispatch] = useReducer(GridReducer, DefaultState);
   const disabled = !validateCoords(state.x, state.y);
 
+  const onPlace = useCallback(
+    (newState: State) => {
+      dispatch({ type: "PLACE", payload: newState });
+    },
+    [dispatch]
+  );
+
   return (
     <GridContext.Provider value={state}>
       <div className="flex flex-col md:flex-row items-center space-x-8">
@@ -39,9 +46,7 @@ export const Grid = () => {
             </div>
           </div>
 
-          <Placement
-            onDone={(state) => dispatch({ type: "PLACE", payload: state })}
-          />
+          <Placement onDone={onPlace} />
           <div className="flex space-x-3">
             <PrimaryButton
               disabled={disabled}
