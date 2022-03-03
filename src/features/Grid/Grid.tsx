@@ -24,36 +24,38 @@ export const Grid = () => {
 
   return (
     <GridContext.Provider value={state}>
-      <div className="grid grid-cols-5">
-        {ROWS.map((row) => (
-          <RowView key={row.y} row={row} />
-        ))}
-      </div>
-      <div className="mt-3 flex flex-col space-y-4 ">
-        <div>FACING: {state.facing}</div>
+      <div className="flex flex-col md:flex-row items-center space-x-8">
+        <div className="grid grid-cols-5">
+          {ROWS.map((row) => (
+            <RowView key={row.y} row={row} />
+          ))}
+        </div>
+        <div className="mt-3 flex flex-col space-y-4 ">
+          <div>FACING: {state.facing}</div>
 
-        <Placement
-          onDone={(state) => dispatch({ type: "PLACE", payload: state })}
-        />
-        <div className="flex space-x-3">
-          <PrimaryButton
-            disabled={disabled}
-            onClick={() => dispatch({ type: "MOVE" })}
-          >
-            Move
-          </PrimaryButton>
-          <PrimaryButton
-            disabled={disabled}
-            onClick={() => dispatch({ type: "TURN", payload: "LEFT" })}
-          >
-            Left
-          </PrimaryButton>
-          <PrimaryButton
-            disabled={disabled}
-            onClick={() => dispatch({ type: "TURN", payload: "RIGHT" })}
-          >
-            Right
-          </PrimaryButton>
+          <Placement
+            onDone={(state) => dispatch({ type: "PLACE", payload: state })}
+          />
+          <div className="flex space-x-3">
+            <PrimaryButton
+              disabled={disabled}
+              onClick={() => dispatch({ type: "MOVE" })}
+            >
+              Move
+            </PrimaryButton>
+            <PrimaryButton
+              disabled={disabled}
+              onClick={() => dispatch({ type: "TURN", payload: "LEFT" })}
+            >
+              Left
+            </PrimaryButton>
+            <PrimaryButton
+              disabled={disabled}
+              onClick={() => dispatch({ type: "TURN", payload: "RIGHT" })}
+            >
+              Right
+            </PrimaryButton>
+          </div>
         </div>
       </div>
     </GridContext.Provider>
