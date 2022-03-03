@@ -6,7 +6,7 @@ import { Action, State } from "./types";
 /*
   Robot starts off the Grid
 */
-export const defaultState: State = {
+export const DefaultState: State = {
   x: -1,
   y: GRID_SIZE,
   facing: "NORTH",
@@ -31,19 +31,19 @@ const transitions: Record<Facing, { LEFT: Facing; RIGHT: Facing }> = {
   },
 };
 
-export const GridReducer = (state: State = defaultState, action: Action) => {
+export const GridReducer = (state: State = DefaultState, action: Action) => {
   switch (action.type) {
     case "MOVE": {
       let nextX = state.x;
       let nextY = state.y;
       if (state.facing === "EAST") {
-        nextX = nextX + 1;
+        nextX++;
       } else if (state.facing === "WEST") {
-        nextX = nextX - 1;
+        nextX--;
       } else if (state.facing === "NORTH") {
-        nextY = nextY + 1;
+        nextY++;
       } else {
-        nextY = nextY - 1;
+        nextY--;
       }
       if (!validateCoords(nextX, nextY)) {
         return state;

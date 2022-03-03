@@ -1,6 +1,6 @@
 export const GRID_SIZE = 5;
 
-export type Row = { y: number; items: Array<Number> };
+export type Row = { y: number; items: Array<number> };
 
 export const ROWS = Array.from(Array(GRID_SIZE))
   .fill(null)
@@ -9,7 +9,7 @@ export const ROWS = Array.from(Array(GRID_SIZE))
     items: Array.from(
       Array(GRID_SIZE)
         .fill(null)
-        .map<Number>((_v, i) => i)
+        .map<number>((_v, i) => i)
     ),
   }))
   .reverse();

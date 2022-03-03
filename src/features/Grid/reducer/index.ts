@@ -1,2 +1,2 @@
-export { GridReducer, defaultState } from "./reducer";
+export { GridReducer, DefaultState } from "./reducer";
 export * from "./types";

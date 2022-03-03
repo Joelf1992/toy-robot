@@ -3,10 +3,10 @@ import { PrimaryButton } from "../../components/Button";
 import { ROWS, Row } from "../../config/grid";
 import { Square } from "./Square";
 import { Placement } from "./Placement";
-import { defaultState, GridReducer, State } from "./reducer";
+import { DefaultState, GridReducer, State } from "./reducer";
 import { validateCoords } from "../../utilities/validate-grid";
 
-export const GridContext = createContext<State>(defaultState);
+export const GridContext = createContext<State>(DefaultState);
 
 const RowView = ({ row }: { row: Row }) => {
   return (
@@ -19,7 +19,7 @@ const RowView = ({ row }: { row: Row }) => {
 };
 
 export const Grid = () => {
-  const [state, dispatch] = useReducer(GridReducer, defaultState);
+  const [state, dispatch] = useReducer(GridReducer, DefaultState);
   const disabled = !validateCoords(state.x, state.y);
 
   return (

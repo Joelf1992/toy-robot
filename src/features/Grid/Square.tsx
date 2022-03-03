@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GridContext } from "./Grid";
 import { SiProbot } from "react-icons/si";
 
-export const Square = ({ x, y }: { x: Number; y: Number }) => {
+export const Square = ({ x, y }: { x: number; y: number }) => {
   const state = useContext(GridContext);
 
   const isRobotPosition = state.x === x && state.y === y;
